@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<head>
+    <title>VT Wind Turbine Team</title>
+    <link rel="icon" href="./workin.png">
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+
+<html>
+    <div class="header">
+        <input type="image" src ="workin.png" id="stoopid" onclick="spin(document.getElementById('stoopid'))">
+        <p class="title-text"><b>Virginia Tech Wind Turbine Team</b></p>
+    </div>
+    <body>
+        <br>
+        <div class="toolbar">
+            <span id="sitingid"><a href="wtt_home.html">About Us</a></span>
+            <span id="mechid"><a href="wtt_mechanical.html">Mechanical</a></span>
+            <span id="aeroid"><a href="wtt_aero.html">Aero</a></span>
+            <span id="sitingid"><a href="wtt_siting.html">Siting</a></span>
+            <span id="sitingid"><a href="wtt_outreach.html">Outreach</a></span>
+        </div>
+
+        <div class="centered-image">
+            <p class="section-text"><b>About Us</b></p>
+            <img src="workin.png" height="300" width="auto">
+            <p class="caption">Wind Turbine Team</p>
+            <p class="caption">“Do what you can, with what you have, where you are.” - Theodore Roosevelt</p>
+            <p></p>
+        </div>
+    </body>
+
+    <script>
+        let isSpinning;
+        function spin(object) {
+            if (isSpinning == true){
+                return;
+            } else {
+            isSpinning = true; 
+            let totalRotation = 0;
+            const step = 24; // Degrees per step
+            function rotate() {
+                if (totalRotation < 360) {
+                    totalRotation += step;
+                    object.style.transform = `rotate(${totalRotation}deg)`;
+                    setTimeout(rotate, 100); // Delay of 60ms per step
+                } else {
+                    isSpinning = false;
+                }
+            }
+            rotate(); // Start the rotation
+            }
+        }
+
+        window.onscroll = function() {stickyToolbar()};
+        var toolbar = document.querySelector('.toolbar');
+        var stickyPoint = toolbar.offsetTop;
+        function stickyToolbar() {
+            if (window.pageYOffset > stickyPoint) {
+                toolbar.classList.add("sticky");
+            } else {
+                toolbar.classList.remove("sticky");
+            }
+        }
+        </script>
+</html>
